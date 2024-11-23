@@ -7,7 +7,13 @@ public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
 	    System.out.println(times(-2, -3));
-	    
+		System.out.println(pow(2, 2));
+		System.out.println(div(10, 2));
+	    System.out.println(div(25, 7));
+		System.out.println(div(-15, 3));
+		//System.out.println(sqrt(263169));
+		//System.out.println(sqrt(16));
+		System.out.println(div(263169, 2));
 	}  
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
@@ -90,24 +96,26 @@ public class Algebra {
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int result = 1;
-		if (n != 0){
+		if (n == 0){
+			return 1;
+		}
+		else {
 			while (n != 0) {
 				result = times (result,x);
-			}
+				n--;
 		}
-		else return 1;
-		
-		return result;
 	}
+	return result;
+}
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		if (x1 == 0 || x2==0) {
-			return -1;
+			return 0;
 		 }
 		 int newx1 = x1;
 		 int newx2 = x2;
 		 if (x1 < 0) {
-			newx1 = times (x1,-1);
+			newx1 = times (-1,x1);
 		 }
 		 if (x2 < 0) {
 			newx2 = times (-1,x2);
@@ -115,39 +123,40 @@ public class Algebra {
 		 if (newx2 > newx1) {
 			return 0;
 		 }
-		 int index = 0;
-		 int result = 0;
-		 while (result < newx1) {
+		 int index = 1;
+		 while (times (newx2,plus(index,1)) <= newx1) {
 			index++;
-			result = times (newx2,index);
-			
 		 }
-
+		 
 		 if ((x1 > 0 && x2 < 0) || (x1 < 0 && x2 > 0)) {
-			return times (-1,minus(index,1));
+			return times (-1,index);
 		 }
 			
-		 return minus(index,1);
+		 return index;
 
 		 }
 		
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		
+		if(x2==0) {
+			return 0;
+		}
 		return minus(x1,times(x2,div(x1,x2)));
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		if (x < 0){
+		if (x < 0 || x == 0){
 			return 0;
 		}
-		int index = 0;
-		//int result = 0;
-		while (index != div(x,index)) {
-			index++;
-			//result = div(x,index);
+		if (x == 1) {
+			return 1;
 		}
-		return index;
+		int g = div(x,2);
+		int epsilon = 1;
+		while (minus(times(g, g),x) >= epsilon) {
+			g = minus(g,div(minus(times(g, g),x),times(g,2)));
+		}
+		return g;
 	}	  	  
 }
