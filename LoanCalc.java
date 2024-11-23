@@ -13,6 +13,7 @@ public class LoanCalc {
 		double rate = Double.parseDouble(args[1]);
 		int n = Integer.parseInt(args[2]);
 		System.out.println("Loan = " + loan + ", interest rate = " + rate + "%, periods = " + n);
+		
 
 		// Computes the periodical payment using brute force search
 		System.out.print("\nPeriodical payment, using brute force: ");
@@ -29,8 +30,8 @@ public class LoanCalc {
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
 		double endingbalance = loan;
-		rate = 1 + rate / 100;
-		for (int i=0; i<n; i++) {
+		rate = 1 + (rate / 100);
+		for (int i=0; i < n; i++) {
 			endingbalance = (endingbalance - payment) * rate;
 		}
 		return endingbalance;
@@ -45,7 +46,7 @@ public class LoanCalc {
 		double g = loan / n;
 		iterationCounter = 0;
 		while (endBalance(loan, rate, n, g) > 0) {
-			g = g + epsilon;
+			g += epsilon;
 			iterationCounter++;
 		}
 		return g;
@@ -58,10 +59,11 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         double L = 1;
-		double H = loan / n * 2;
+		double H = loan / (n / 2) ;
 		double g = (L + H) / 2;
 		iterationCounter = 0;
 		while (H - L > epsilon) {
+			L += epsilon;
 			if (endBalance(loan, rate, n, g) * endBalance(loan, rate, n, L) > 0) {
 				L = g;
 			}
