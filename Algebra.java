@@ -9,7 +9,6 @@ public class Algebra {
 	    System.out.println(times(-2, -3));
 	    
 	}  
-
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		if ((x1 > 0 && x2 > 0) || (x1 < 0 && x2 > 0)) {
@@ -56,7 +55,6 @@ public class Algebra {
 		
 		return x1;
 	}
-
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int sum = 0;
@@ -89,7 +87,6 @@ public class Algebra {
 		}
 		return sum;  
 	}
-
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int result = 1;
@@ -102,7 +99,6 @@ public class Algebra {
 		
 		return result;
 	}
-
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		if (x1 == 0 || x2==0) {
@@ -135,7 +131,6 @@ public class Algebra {
 
 		 }
 		
-
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		
@@ -148,10 +143,10 @@ public class Algebra {
 			return 0;
 		}
 		int index = 0;
-		int result = 0;
+		//int result = 0;
 		while (index != div(x,index)) {
 			index++;
-			result = div(x,index);
+			//result = div(x,index);
 		}
 		return index;
 	}	  	  

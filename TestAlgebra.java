@@ -104,7 +104,6 @@ public class TestAlgebra {
         passedTests += passed;
         return passed;
     }
-
     private static int testPow() {
         System.out.println("\nTesting power operations:");
         totalTests += 6;
