@@ -11,9 +11,9 @@ public class Algebra {
 		System.out.println(div(10, 2));
 	    System.out.println(div(25, 7));
 		System.out.println(div(-15, 3));
-		//System.out.println(sqrt(263169));
-		//System.out.println(sqrt(16));
-		System.out.println(div(263169, 2));
+		System.out.println(sqrt(76123));
+		System.out.println(sqrt(16));
+		//System.out.println(div(263169, 2));
 	}  
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
@@ -124,7 +124,7 @@ public class Algebra {
 			return 0;
 		 }
 		 int index = 1;
-		 while (times (newx2,plus(index,1)) <= newx1) {
+		 while (times(newx2,plus(index,1)) <= newx1) {
 			index++;
 		 }
 		 
@@ -152,11 +152,22 @@ public class Algebra {
 		if (x == 1) {
 			return 1;
 		}
-		int g = div(x,2);
-		int epsilon = 1;
-		while (minus(times(g, g),x) >= epsilon) {
-			g = minus(g,div(minus(times(g, g),x),times(g,2)));
+		int sqr = 0;
+		int index = 2;
+		while (sqr == 0) {
+			if (times(index,index) <= x && times(plus(index, 1),plus(index, 1)) > x) {
+				sqr = index;
+			}
+			index++;
 		}
-		return g;
-	}	  	  
+		return sqr;
+		}
+		
+
+		
+		//int index = 1;
+		//while (index != div(x,index)) {
+			//index++;
+		//}
+		//return index; 	  
 }
